@@ -1,69 +1,75 @@
 <template>
   <div class="generator">
     <h3>{{ message }} {{ version }}</h3>
-    <div class="container">
-      <div class="form-group">
-        <div class="col">
-          <div class="">
-            <input
-              type="text"
-              class=""
-              v-on:click="select"
-              v-model="newPassword"
-              id="generatedPassword"
-            />
-            <a v-on:click="copy" href="#">Kopyala</a>
-          </div>
-          <span v-if="copied">Kopyalandı</span>
-          <br />
-        </div>
+
+    <div class="form-group">
+      <div class="row justify-content-sm-center">
+        <input
+          type="text"
+          class="form-control col-md-5"
+          v-on:click="select"
+          v-model="newPassword"
+          id="generatedPassword"
+          readonly
+        />
+        <a
+          v-on:click="copy"
+          href="#"
+          v-text="copied ? 'Kopyalandı' : 'Kopyala'"
+          class="btn btn-primary"
+          >Kopyala
+        </a>
       </div>
+    </div>
 
-      <br />
+    <div class="form-group">
+      <div class="col">
+        <label for="formControlRange">Uzunluk: {{ length }}</label>
+        <input
+          type="range"
+          class="form-control-range"
+          id="formControlRange"
+          :min="min"
+          :max="max"
+          v-model="length"
+          v-on:change="getLen"
+        />
+      </div>
+    </div>
 
-      <div class="form-group">
-        <div class="col">
-          <label for="formControlRange">Uzunluk: {{ length }}</label>
+    <div class="form-group">
+      <div class="col">
+        <div class="row justify-content-center">
+          <label for="uppercase" class="mr-5">Büyük Harf</label>
           <input
-            type="range"
-            class="form-control-range"
-            id="formControlRange"
-            min="4"
-            max="16"
-            v-model="length"
-            v-on:change="getLen"
+            type="checkbox"
+            id="uppercase"
+            v-bind:checked="uppercase"
+            v-on:change="uppercase = !uppercase"
+          />
+        </div>
+        <div class="row justify-content-center">
+          <label for="lowercase" class="mr-5">Küçük Harf</label>
+          <input
+            type="checkbox"
+            id="lowercase"
+            v-bind:checked="lowercase"
+            v-on:change="lowercase = !lowercase"
+          />
+        </div>
+        <div class="row justify-content-center">
+          <label for="numbers" class="mr-5">Rakam</label>
+          <input
+            type="checkbox"
+            id="numbers"
+            v-bind:checked="number"
+            v-on:change="number = !number"
           />
         </div>
       </div>
+    </div>
 
-      <div class="col">
-        <label for="uppercase">Büyük Harf</label>
-        <input
-          type="checkbox"
-          id="uppercase"
-          v-bind:checked="uppercase"
-          v-on:change="uppercase = !uppercase"
-        />
-      </div>
-      <div class="col">
-        <label for="lowercase">Küçük Harf</label>
-        <input
-          type="checkbox"
-          id="lowercase"
-          v-bind:checked="lowercase"
-          v-on:change="lowercase = !lowercase"
-        />
-      </div>
-      <div class="col">
-        <label for="numbers">Rakam</label>
-        <input
-          type="checkbox"
-          id="numbers"
-          v-bind:checked="number"
-          v-on:change="number = !number"
-        />
-      </div>
-
+    <div class="form-group">
       <button v-on:click="generatePass" class="btn btn-success">Oluştur</button>
     </div>
   </div>
@@ -84,7 +90,7 @@ export default {
       uppercase: false,
       number: true,
       copied: false,
-      newPassword: "",
+      newPassword: "Tıkla ve Şifre Oluştur",
       lowers: "abcdefghijklmnopqrstuvwxyz",
       uppers: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
       numbers: "1234567890",

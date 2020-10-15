@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="container rounded col-md-4" style="background-color: white; padding-bottom:5px">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <PassGenerator message="Password Generator" version="v1.0" />
+    <PassGenerator message="Password Generator" version="v1.1" />
     <h1>{{ asd }}</h1>
   </div>
-</template>
+</template>rm .git/index.lock
 
 <script>
 import PassGenerator from "./components/PassGenerator.vue";
@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
