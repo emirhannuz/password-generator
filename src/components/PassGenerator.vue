@@ -75,6 +75,17 @@
   </div>
 </template>
 <style scoped>
+.btn-success,
+.btn-primary {
+  background: #3a6e6b;
+  border-color: #3a6e6b;
+}
+.btn-success:hover,
+.btn-primary:hover {
+  background: #364d60;
+  border-color: #364d60;
+}
+
 </style>
 
 <script>

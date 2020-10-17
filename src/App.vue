@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container rounded col-md-4" style="background-color: white; padding-bottom:5px">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img alt="" class="mt-5 mb-5" src="./assets/image.svg" width="50%" height="60%"/>
     <PassGenerator message="Password Generator" version="v1.1" />
     <h1>{{ asd }}</h1>
   </div>
