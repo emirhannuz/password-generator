@@ -80,10 +80,15 @@
   background: #3a6e6b;
   border-color: #3a6e6b;
 }
-.btn-success:hover,
+.btn-success:hover,.btn-success:active
 .btn-primary:hover {
-  background: #364d60;
-  border-color: #364d60;
+  background: #364d60 !important;
+  border-color: #364d60 !important;
+}
+.btn-success.focus,.btn-success:focus{
+  
+  background: #364d60 !important;
+  border-color: #364d60 !important;
 }
 
 </style>
