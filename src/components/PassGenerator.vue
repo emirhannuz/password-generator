@@ -70,7 +70,7 @@
     </div>
 
     <div class="form-group">
-      <button v-on:click="generatePass" class="btn btn-success">Oluştur</button>
+      <button v-on:click="newGenerator" class="btn btn-success">Oluştur</button>
     </div>
   </div>
 </template>
@@ -80,17 +80,30 @@
   background: #3a6e6b;
   border-color: #3a6e6b;
 }
-.btn-success:hover,.btn-success:active
-.btn-primary:hover {
-  background: #364d60 !important;
-  border-color: #364d60 !important;
-}
-.btn-success.focus,.btn-success:focus{
-  
-  background: #364d60 !important;
-  border-color: #364d60 !important;
+.btn-success:hover,
+.btn-success:active,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-success.focus,
+.btn-success:focus,
+.btn-primary.focus,
+.btn-primary:focus {
+  background: #364d60;
+  border-color: #364d60;
 }
 
+.btn-success:not(:disabled):not(.disabled).active,
+.btn-success:not(:disabled):not(.disabled):active,
+.show > .btn-success.dropdown-toggle {
+  background: #364d60;
+  border-color: #364d60;
+}
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  background: #364d60;
+  border-color: #364d60;
+}
 </style>
 
 <script>
@@ -99,7 +112,7 @@ export default {
   props: { message: String, version: String },
   data: () => {
     return {
-      min: 4,
+      min: 6,
       max: 16,
       length: 8,
       lowercase: false,
@@ -107,9 +120,9 @@ export default {
       number: true,
       copied: false,
       newPassword: "Tıkla ve Şifre Oluştur",
-      lowers: "abcdefghijklmnopqrstuvwxyz",
-      uppers: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
-      numbers: "1234567890",
+      lowerLetters: "abcdefghijklmnopqrstuvwxyz",
+      upperLetters: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
+      digits: "1234567890",
     };
   },
   methods: {
@@ -128,15 +141,38 @@ export default {
       document.execCommand("copy");
       this.copied = true;
     },
+    newGenerator: function () {
+      this.copied = false;
+      var password = "";
+      var random;
+      if (this.lowercase || this.uppercase || this.number) {
+        this.newPassword = password;
+        for (let index = 0; index < this.length; index++) {
+          if (index % 3 == 0 && this.number) {
+            random = Math.floor(Math.random() * this.digits.length);
+            password += this.digits[random];
+          } else if (index % 3 == 1 && this.lowercase) {
+            random = Math.floor(Math.random() * this.lowerLetters.length);
+            password += this.lowerLetters[random];
+          } else if (index % 3 == 2 && this.uppercase) {
+            random = Math.floor(Math.random() * this.upperLetters.length);
+            password += this.upperLetters[random];
+          }
+          this.newPassword = password;
+        }
+      } else {
+        this.newPassword = "En az bir kutucuğu işaretlemelisiniz.";
+      }
+    },
 
     generatePass: function () {
       this.copied = false;
       var password = "";
       var random;
       var cases = "";
-      cases = this.lowercase ? this.lowers : "";
-      cases += this.uppercase ? this.uppers : "";
-      cases += this.number ? this.numbers : "";
+      cases = this.lowercase ? this.lowerLetters : "";
+      cases += this.uppercase ? this.upperLetters : "";
+      cases += this.number ? this.digits : "";
       if (cases) {
         for (let index = 0; index < this.length; index++) {
           random = Math.floor(Math.random() * cases.length);
