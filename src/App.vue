@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container rounded col-lg-4">
     <img alt="" class="mt-5 mb-5" src="./assets/image.svg" width="50%" height="60%"/>
-    <PassGenerator message="Password Generator" version="v1.1" />
+    <PassGenerator message="Password Generator" version="v1.2" />
     <Modal></Modal>
   </div>
 </template>
