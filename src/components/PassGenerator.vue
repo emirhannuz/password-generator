@@ -112,9 +112,9 @@ export default {
   props: { message: String, version: String },
   data: () => {
     return {
-      min: 6,
+      min: 4,
       max: 16,
-      length: 8,
+      length: 10,
       lowercase: false,
       uppercase: false,
       number: true,
